@@ -1,1 +1,2 @@
-console.log('hello');
+const add = 'dsdsad';
+export default add;
