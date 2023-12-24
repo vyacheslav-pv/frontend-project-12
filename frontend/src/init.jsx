@@ -25,6 +25,11 @@ const rollbarConfig = {
   captureUnhandledRejections: true,
 };
 
+function TestError() {
+  const a = null;
+  return a.hello();
+}
+
 const socket = io();
 
 const defaultChannelId = 1;
@@ -91,6 +96,7 @@ const init = () => {
   return (
     <RollbalProvider config={rollbarConfig}>
       <ErrorBoundary>
+        <TestError />
         <Provider store={store}>
           <SocketProvider>
             <App />
