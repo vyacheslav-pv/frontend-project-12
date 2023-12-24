@@ -16,13 +16,13 @@ import {
 } from './slices/channelsSlice';
 import resources from './locales/index.js';
 
+console.log(process.env.REACT_APP_ROLLBAR_TOKEN);
+
 const rollbarConfig = {
   accessToken: process.env.REACT_APP_ROLLBAR_TOKEN,
   payload: {
     environment: 'production',
   },
-  captureUncaught: true,
-  captureUnhandledRejections: true,
 };
 
 function TestError() {
