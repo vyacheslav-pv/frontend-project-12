@@ -32,8 +32,6 @@ const ChatPage = () => {
   const channels = useSelector(channelsSelectors.selectAll);
   const currentMessages = messages.filter(({ idMessage }) => idMessage === currentChannelId);
 
-  console.log(chatMessage);
-
   const channelActive = channels
     .filter(({ id }) => id === currentChannelId)
     .map((c) => filter.clean(c.name)).join();
