@@ -1,3 +1,8 @@
-html, body, #chat {
+  html, body, #chat {
     height: 100vh;
+  }
+
+  #button-message {
+    border-radius: 0px;
+    border-color: transparent;
   }
