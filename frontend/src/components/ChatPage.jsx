@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Form, Row, Col, Container, Button,
@@ -18,11 +18,15 @@ import useFilter from '../hooks/useFilter.jsx';
 const ChatPage = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
   const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   const { socketApi } = useSocket();
+  const inputRef = useRef();
   const filter = useFilter();
 
   const [chatMessage, setChatMessage] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+
   const messages = useSelector(messagesSelectors.selectAll);
   const { username } = JSON.parse(localStorage.getItem('userId'));
   const channels = useSelector(channelsSelectors.selectAll);
@@ -40,10 +44,16 @@ const ChatPage = () => {
 
   useEffect(() => {
     setChatMessage('');
+    setSubmitting(false);
   }, [messages]);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [currentChannelId, submitting]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
     const filterMessage = filter.clean(chatMessage);
     console.log(filterMessage);
     await socketApi.sendMessage(
@@ -77,6 +87,7 @@ const ChatPage = () => {
                     type="text"
                     onChange={(e) => setChatMessage(e.target.value)}
                     value={chatMessage}
+                    ref={inputRef}
                   />
                   <Button type="submit" id="button-message" variant="outline-white" className="btn-group-vertical" disabled={!chatMessage.trim()}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20" fill="currentColor">
