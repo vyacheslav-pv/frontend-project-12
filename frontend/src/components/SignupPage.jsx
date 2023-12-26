@@ -27,7 +27,7 @@ const SignupPage = () => {
     username: Yup
       .string()
       .min(3, t('signupPage.schemaValidation.minUser'))
-      .max(20, t('signupPage.schemaValidation.minUser'))
+      .max(20, t('signupPage.schemaValidation.maxUser'))
       .trim()
       .notOneOf([Yup.ref('busyName'), null], t('signupPage.schemaValidation.userExists'))
       .required(t('signupPage.schemaValidation.required')),
@@ -81,8 +81,8 @@ const SignupPage = () => {
               </div>
               <Form onSubmit={formik.handleSubmit} className="w-50">
                 <h1 className="text-center mb-4">{t('signupPage.h1text')}</h1>
-                <Form.Floating
-                  className="mb-3"
+                <Form.Group
+                  className="form-floating mb-3"
                 >
                   <Form.Control
                     name="username"
@@ -92,7 +92,7 @@ const SignupPage = () => {
                     ref={inputRef}
                     onChange={formik.handleChange}
                     value={formik.values.username}
-                    placeholder={t('signupPage.userLabel')}
+                    placeholder={t('signupPage.userPlaceholder')}
                     onBlur={formik.handleBlur}
                     isInvalid={formik.touched.username && formik.errors.username}
                   />
@@ -100,7 +100,7 @@ const SignupPage = () => {
                   <Form.Control.Feedback tooltip type="invalid">
                     {formik.errors.username}
                   </Form.Control.Feedback>
-                </Form.Floating>
+                </Form.Group>
                 <Form.Floating
                   className="mb-3"
                 >
