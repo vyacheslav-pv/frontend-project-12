@@ -1,5 +1,5 @@
 import {
-  Form, Row, Col, Card, Container, Button,
+  Form, Row, Col, Card, Container, Button, FloatingLabel,
 } from 'react-bootstrap';
 import axios from 'axios';
 import { useFormik } from 'formik';
@@ -82,26 +82,29 @@ const SignupPage = () => {
               <Form onSubmit={formik.handleSubmit} className="w-50">
                 <h1 className="text-center mb-4">{t('signupPage.h1text')}</h1>
                 <Form.Group
-                  controlId="username"
-                  className="form-floating mb-3"
+                  className="mb-3"
                 >
-                  <Form.Control
-                    name="username"
-                    id="username"
-                    autoComplete="username"
-                    required
-                    type="text"
-                    ref={inputRef}
-                    onChange={formik.handleChange}
-                    value={formik.values.username}
-                    placeholder={t('signupPage.schemaValidation.minUser')}
-                    onBlur={formik.handleBlur}
-                    isInvalid={formik.touched.username && formik.errors.username}
-                  />
-                  <Form.Label htmlFor="username">{t('signupPage.userLabel')}</Form.Label>
-                  <Form.Control.Feedback tooltip type="invalid">
-                    {formik.errors.username}
-                  </Form.Control.Feedback>
+                  <FloatingLabel
+                    controlId="username"
+                    label={t('signupPage.userLabel')}
+                  >
+                    <Form.Control
+                      name="username"
+                      id="username"
+                      autoComplete="username"
+                      required
+                      type="text"
+                      ref={inputRef}
+                      onChange={formik.handleChange}
+                      value={formik.values.username}
+                      placeholder={t('signupPage.schemaValidation.minUser')}
+                      onBlur={formik.handleBlur}
+                      isInvalid={formik.touched.username && formik.errors.username}
+                    />
+                    <Form.Control.Feedback tooltip type="invalid">
+                      {formik.errors.username}
+                    </Form.Control.Feedback>
+                  </FloatingLabel>
                 </Form.Group>
                 <Form.Floating
                   className="mb-3"
