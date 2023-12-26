@@ -27,7 +27,7 @@ const SignupPage = () => {
     username: Yup
       .string()
       .min(3, t('signupPage.schemaValidation.minUser'))
-      .max(20, t('signupPage.schemaValidation.maxUser'))
+      .max(20, t('signupPage.schemaValidation.minUser'))
       .trim()
       .notOneOf([Yup.ref('busyName'), null], t('signupPage.schemaValidation.userExists'))
       .required(t('signupPage.schemaValidation.required')),
@@ -92,7 +92,7 @@ const SignupPage = () => {
                     ref={inputRef}
                     onChange={formik.handleChange}
                     value={formik.values.username}
-                    placeholder={t('signupPage.userPlaceholder')}
+                    placeholder={t('signupPage.schemaValidation.minUser')}
                     onBlur={formik.handleBlur}
                     isInvalid={formik.touched.username && formik.errors.username}
                   />
