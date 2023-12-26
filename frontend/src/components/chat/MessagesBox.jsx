@@ -13,9 +13,12 @@ const MessagesBox = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  });
+  useEffect(
+    () => {
+      scrollToBottom();
+    },
+    [messages],
+  );
 
   const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   return (
