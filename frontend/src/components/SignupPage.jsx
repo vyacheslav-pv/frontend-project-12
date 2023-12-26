@@ -97,7 +97,7 @@ const SignupPage = () => {
                       ref={inputRef}
                       onChange={formik.handleChange}
                       value={formik.values.username}
-                      placeholder={t('signupPage.schemaValidation.minUser')}
+                      placeholder={t('signupPage.userLabel')}
                       onBlur={formik.handleBlur}
                       isInvalid={formik.touched.username && formik.errors.username}
                     />
