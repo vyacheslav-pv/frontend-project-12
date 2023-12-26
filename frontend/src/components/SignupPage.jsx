@@ -27,7 +27,7 @@ const SignupPage = () => {
     username: Yup
       .string()
       .min(3, t('signupPage.schemaValidation.minUser'))
-      .max(20, t('signupPage.schemaValidation.maxUser'))
+      .max(20, t('signupPage.schemaValidation.minUser'))
       .trim()
       .notOneOf([Yup.ref('busyName'), null], t('signupPage.schemaValidation.userExists'))
       .required(t('signupPage.schemaValidation.required')),
