@@ -86,6 +86,7 @@ const SignupPage = () => {
                 >
                   <Form.Control
                     name="username"
+                    id="username"
                     autoComplete="username"
                     required
                     type="text"
