@@ -86,7 +86,7 @@ const SignupPage = () => {
                 >
                   <FloatingLabel
                     controlId="username"
-                    label={t('signupPage.userLabel')}
+                    label={t('signupPage.userPlaceholder')}
                   >
                     <Form.Control
                       name="username"
