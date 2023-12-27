@@ -61,7 +61,7 @@ export default {
       },
       remove: {
         modalTitle: 'Удалить канал',
-        succesDelChannel: 'Канал удален',
+        succesDelChannel: 'Канал удалён',
         confDelete: 'Уверены?',
         buttonCanсel: 'Отменить',
         buttonSubmit: 'Удалить',
