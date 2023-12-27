@@ -16,7 +16,6 @@ export default createAsyncThunk(
   'data/fetchData',
   async () => {
     const response = await axios.get(routes.usersPath(), { headers: getAuthHeader() });
-    console.log(response);
     return response.data;
   },
 );
