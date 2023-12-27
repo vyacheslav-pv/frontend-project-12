@@ -5,7 +5,6 @@ import getModal from './index';
 const ModalDialog = () => {
   const dispatch = useDispatch();
   const modalInfo = useSelector((state) => state.modals.modalInfo);
-  console.log(1);
   if (modalInfo.type === null) {
     return null;
   }

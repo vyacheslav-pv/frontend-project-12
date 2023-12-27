@@ -25,8 +25,6 @@ const Channel = ({
 
   const filterchannelName = filter.clean(name);
 
-  console.log(activeChannelId === channel.id);
-
   return (
     removable ? (
       <Nav.Item className="w-100" ref={currentChannelRef} key={id}>

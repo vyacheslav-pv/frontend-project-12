@@ -39,7 +39,6 @@ const Add = ({ hideModal }) => {
           dispatch(setCurrentChannelId(response.data.id));
         }
         toast.success(t('modals.add.succesAddChannel'));
-        console.log(hideModal());
         hideModal();
       } catch (err) {
         inputRef.current.select();

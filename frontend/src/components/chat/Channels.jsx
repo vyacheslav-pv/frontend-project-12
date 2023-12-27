@@ -10,7 +10,6 @@ import Channel from './Channel';
 const Channels = () => {
   const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   const { t } = useTranslation();
-  console.log(currentChannelId);
 
   const currentChannelRef = useRef(null);
 
@@ -21,7 +20,6 @@ const Channels = () => {
   };
 
   const channels = useSelector(channelsSelectors.selectAll);
-  console.log(channels);
 
   const scrollToCurrentChannel = () => {
     currentChannelRef.current?.scrollIntoView({ behavior: 'auto' });

@@ -25,15 +25,12 @@ const MessagesBox = () => {
     <div id="messages-box" className="chat-messages overflow-auto px-5 ">
       {messages
         .filter(({ idMessage }) => idMessage === currentChannelId)
-        .map(({ newMessage, id, username }) => {
-          console.log(username);
-          return (
-            <div key={id} className="text-break mb-2">
-              <b>{`${username}: `}</b>
-              {filter.clean(newMessage)}
-            </div>
-          );
-        })}
+        .map(({ newMessage, id, username }) => (
+          <div key={id} className="text-break mb-2">
+            <b>{`${username}: `}</b>
+            {filter.clean(newMessage)}
+          </div>
+        ))}
       <div ref={messagesEndRef} />
     </div>
   );
