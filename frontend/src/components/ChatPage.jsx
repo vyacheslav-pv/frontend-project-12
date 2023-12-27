@@ -28,7 +28,8 @@ const ChatPage = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const messages = useSelector(messagesSelectors.selectAll);
-  const { username } = auth.data;
+  const { username, token } = auth.data;
+  const { logOut } = auth;
 
   const channels = useSelector(channelsSelectors.selectAll);
   const currentMessages = messages.filter(({ idMessage }) => idMessage === currentChannelId);
@@ -38,7 +39,7 @@ const ChatPage = () => {
     .map((c) => filter.clean(c.name)).join();
 
   useEffect(() => {
-    dispatch(fetchData());
+    dispatch(fetchData({ token, logOut }));
   }, []);
 
   useEffect(() => {
