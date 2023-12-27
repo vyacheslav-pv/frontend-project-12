@@ -7,16 +7,17 @@ import filter from 'leo-profanity';
 import cn from 'classnames';
 import { setCurrentChannelId } from '../../slices/channelsSlice.js';
 
+const buttonsStyle = (isCurrent) => cn(
+  'w-100 rounded-0 text-start btn',
+  { 'btn-secondary': isCurrent },
+);
+
 const Channel = ({
   channel, showModal, activeChannelId, currentChannelRef,
 }) => {
   const { id, name, removable } = channel;
   const { t } = useTranslation();
 
-  const buttonsStyle = (isCurrent) => cn(
-    'w-100 rounded-0 text-start btn',
-    { 'btn-secondary': isCurrent },
-  );
   const dispatch = useDispatch();
 
   const isCurrent = id === activeChannelId;
