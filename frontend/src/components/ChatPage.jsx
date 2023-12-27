@@ -6,6 +6,7 @@ import {
   Form, Row, Col, Container, Button,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import filter from 'leo-profanity';
 
 import fetchData from '../slices/fetchDataSlice.js';
 import { selectors as messagesSelectors } from '../slices/messagesSlice.js';
@@ -13,7 +14,6 @@ import MessagesBox from './chat/MessagesBox.jsx';
 import { useSocket } from '../hooks/index.jsx';
 import Channels from './chat/Channels.jsx';
 import { selectors as channelsSelectors } from '../slices/channelsSlice.js';
-import useFilter from '../hooks/useFilter.jsx';
 
 const ChatPage = () => {
   const { t } = useTranslation();
@@ -22,7 +22,6 @@ const ChatPage = () => {
   const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   const { socketApi } = useSocket();
   const inputRef = useRef();
-  const filter = useFilter();
 
   const [chatMessage, setChatMessage] = useState('');
   const [submitting, setSubmitting] = useState(false);

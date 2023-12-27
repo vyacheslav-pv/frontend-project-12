@@ -2,9 +2,10 @@ import { Provider } from 'react-redux';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { Provider as RollbalProvider, ErrorBoundary } from '@rollbar/react';
+import filter from 'leo-profanity';
+
 import App from './components/App.jsx';
 import store from './slices/index.js';
-
 import { addMessage } from './slices/messagesSlice.js';
 import {
   setCurrentChannelId,
@@ -25,6 +26,8 @@ const rollbarConfig = {
 };
 
 const defaultChannelId = 1;
+
+filter.addDictionary('en-ru', [...filter.getDictionary('ru'), ...filter.getDictionary('en')]);
 
 const init = (socket) => {
   const defaultLang = 'ru';

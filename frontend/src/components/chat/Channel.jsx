@@ -3,9 +3,9 @@ import {
 } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import filter from 'leo-profanity';
 import cn from 'classnames';
 import { setCurrentChannelId } from '../../slices/channelsSlice.js';
-import useFilter from '../../hooks/useFilter.jsx';
 
 const Channel = ({
   channel, showModal, activeChannelId, currentChannelRef,
@@ -20,8 +20,6 @@ const Channel = ({
   const dispatch = useDispatch();
 
   const isCurrent = id === activeChannelId;
-
-  const filter = useFilter();
 
   const filterchannelName = filter.clean(name);
 
