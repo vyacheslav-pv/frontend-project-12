@@ -1,5 +1,4 @@
 import { Provider } from 'react-redux';
-import { io } from 'socket.io-client';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { Provider as RollbalProvider, ErrorBoundary } from '@rollbar/react';
@@ -25,11 +24,9 @@ const rollbarConfig = {
   captureUnhandledRejections: true,
 };
 
-const socket = io();
-
 const defaultChannelId = 1;
 
-const init = () => {
+const init = (socket) => {
   const defaultLang = 'ru';
   const instance = i18next.createInstance();
   instance
