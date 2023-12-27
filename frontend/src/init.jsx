@@ -5,7 +5,6 @@ import { Provider as RollbalProvider, ErrorBoundary } from '@rollbar/react';
 import App from './components/App.jsx';
 import store from './slices/index.js';
 
-import { SocketContext } from './contexts/index.jsx';
 import { addMessage } from './slices/messagesSlice.js';
 import {
   setCurrentChannelId,
@@ -14,6 +13,7 @@ import {
   removeChannel,
 } from './slices/channelsSlice';
 import resources from './locales/index.js';
+import SocketProvider from './providers/SocketProvider.jsx';
 
 const rollbarConfig = {
   accessToken: process.env.REACT_APP_ROLLBAR_TOKEN,
@@ -59,31 +59,6 @@ const init = (socket) => {
       store.dispatch(setCurrentChannelId(defaultChannelId));
     }
   });
-
-  const SocketProvider = ({ children }) => {
-    const sendData = (...args) => new Promise((resolve, reject) => {
-      socket.timeout(3000).emit(...args, (error, response) => {
-        if (response?.status === 'ok') {
-          resolve(response);
-        }
-        reject(error);
-      });
-    });
-
-    const socketApi = {
-      sendMessage: (message) => sendData('newMessage', message),
-      addChannel: (channel) => sendData('newChannel', channel),
-      renameChannel: (channel) => sendData('renameChannel', channel),
-      removeChannel: (channel) => sendData('removeChannel', channel),
-    };
-
-    return (
-      // eslint-disable-next-line react/jsx-no-constructed-context-values
-      <SocketContext.Provider value={{ socketApi }}>
-        {children}
-      </SocketContext.Provider>
-    );
-  };
 
   return (
     <RollbalProvider config={rollbarConfig}>
