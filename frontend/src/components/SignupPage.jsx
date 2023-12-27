@@ -1,5 +1,5 @@
 import {
-  Form, Row, Col, Card, Container, Button, FloatingLabel,
+  Form, Row, Col, Card, Container, Button,
 } from 'react-bootstrap';
 import axios from 'axios';
 import { useFormik } from 'formik';
@@ -27,7 +27,7 @@ const SignupPage = () => {
     username: Yup
       .string()
       .min(3, t('signupPage.schemaValidation.minUser'))
-      .max(20, t('signupPage.schemaValidation.minUser'))
+      .max(20, t('signupPage.schemaValidation.maxUser'))
       .trim()
       .notOneOf([Yup.ref('busyName'), null], t('signupPage.schemaValidation.userExists'))
       .required(t('signupPage.schemaValidation.required')),
@@ -81,36 +81,33 @@ const SignupPage = () => {
               </div>
               <Form onSubmit={formik.handleSubmit} className="w-50">
                 <h1 className="text-center mb-4">{t('signupPage.h1text')}</h1>
-                <Form.Group
+                <Form.Floating
                   className="mb-3"
                 >
-                  <FloatingLabel
-                    controlId="username"
-                    label={t('signupPage.userLabel')}
-                  >
-                    <Form.Control
-                      name="username"
-                      id="username"
-                      autoComplete="username"
-                      required
-                      type="text"
-                      ref={inputRef}
-                      onChange={formik.handleChange}
-                      value={formik.values.username}
-                      placeholder={t('signupPage.userLabel')}
-                      onBlur={formik.handleBlur}
-                      isInvalid={formik.touched.username && formik.errors.username}
-                    />
-                    <Form.Control.Feedback tooltip type="invalid">
-                      {formik.errors.username}
-                    </Form.Control.Feedback>
-                  </FloatingLabel>
-                </Form.Group>
+                  <Form.Control
+                    name="username"
+                    autoComplete="username"
+                    required
+                    type="text"
+                    ref={inputRef}
+                    onChange={formik.handleChange}
+                    value={formik.values.username}
+                    placeholder={t('signupPage.userPlaceholder')}
+                    onBlur={formik.handleBlur}
+                    isInvalid={formik.touched.username && formik.errors.username}
+                    id="username"
+                  />
+                  <Form.Label htmlFor="username">{t('signupPage.userLabel')}</Form.Label>
+                  <Form.Control.Feedback tooltip type="invalid">
+                    {formik.errors.username}
+                  </Form.Control.Feedback>
+                </Form.Floating>
                 <Form.Floating
                   className="mb-3"
                 >
                   <Form.Control
                     name="password"
+                    id="password"
                     required
                     autoComplete="new-password"
                     placeholder={t('signupPage.passPlaceholder')}
@@ -130,6 +127,7 @@ const SignupPage = () => {
                 >
                   <Form.Control
                     name="confirmPassword"
+                    id="confirmPassword"
                     autoComplete="new-password"
                     type="password"
                     required
