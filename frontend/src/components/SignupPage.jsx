@@ -52,8 +52,7 @@ const SignupPage = () => {
     onSubmit: async (values) => {
       try {
         const res = await axios.post(routes.signupPath(), values);
-        localStorage.setItem('userId', JSON.stringify(res.data));
-        auth.logIn();
+        auth.logIn(res);
         navigate('/');
       } catch (err) {
         if (err.isAxiosError && err.response.status === 409) {

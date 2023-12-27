@@ -20,16 +20,28 @@ import { useAuth } from '../hooks/index.jsx';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AuthProvider = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem('userId'));
+  const data = JSON.parse(localStorage.getItem('userId'));
 
-  const logIn = () => setLoggedIn(true);
+  const [loggedIn, setLoggedIn] = useState(!!data);
+
+  const logIn = (response) => {
+    localStorage.setItem('userId', JSON.stringify(response.data));
+    setLoggedIn(true);
+  };
+
   const logOut = () => {
     localStorage.removeItem('userId');
     setLoggedIn(false);
   };
 
   return (
-    <AuthContext.Provider value={useMemo(() => ({ loggedIn, logIn, logOut }), [loggedIn])}>
+    <AuthContext.Provider value={useMemo(() => ({
+      loggedIn,
+      logIn,
+      logOut,
+      data,
+    }), [loggedIn, data])}
+    >
       {children}
     </AuthContext.Provider>
   );

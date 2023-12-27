@@ -40,8 +40,7 @@ const LoginPage = () => {
       setAuthFailed(false);
       try {
         const res = await axios.post(routes.loginPath(), values);
-        localStorage.setItem('userId', JSON.stringify(res.data));
-        auth.logIn();
+        auth.logIn(res);
         return navigate('/');
       } catch (error) {
         if (error.isAxiosError) {
@@ -66,7 +65,7 @@ const LoginPage = () => {
                 <img
                   src={login}
                   className="rounded-circle"
-                  alt="Войти"
+                  alt={t('loginPage.username')}
                 />
               </Col>
               <Form onSubmit={formik.handleSubmit} className="col-12 col-md-6 mt-3 mt-mb-0">

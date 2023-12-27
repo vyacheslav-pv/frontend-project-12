@@ -11,7 +11,7 @@ import filter from 'leo-profanity';
 import fetchData from '../slices/fetchDataSlice.js';
 import { selectors as messagesSelectors } from '../slices/messagesSlice.js';
 import MessagesBox from './chat/MessagesBox.jsx';
-import { useSocket } from '../hooks/index.jsx';
+import { useSocket, useAuth } from '../hooks/index.jsx';
 import Channels from './chat/Channels.jsx';
 import { selectors as channelsSelectors } from '../slices/channelsSlice.js';
 
@@ -22,12 +22,14 @@ const ChatPage = () => {
   const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   const { socketApi } = useSocket();
   const inputRef = useRef();
+  const auth = useAuth();
 
   const [chatMessage, setChatMessage] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
   const messages = useSelector(messagesSelectors.selectAll);
-  const { username } = JSON.parse(localStorage.getItem('userId'));
+  const { username } = auth.data;
+
   const channels = useSelector(channelsSelectors.selectAll);
   const currentMessages = messages.filter(({ idMessage }) => idMessage === currentChannelId);
 
