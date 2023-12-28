@@ -15,7 +15,7 @@ import {
   removeChannel,
 } from './slices/channelsSlice';
 import resources from './locales/index.js';
-import SocketProvider from './providers/SocketProvider.jsx';
+import ApiProvider from './providers/ApiProvider.jsx';
 
 const rollbarConfig = {
   accessToken: process.env.REACT_APP_ROLLBAR_TOKEN,
@@ -70,9 +70,9 @@ const init = async () => {
     <RollbalProvider config={rollbarConfig}>
       <ErrorBoundary>
         <Provider store={store}>
-          <SocketProvider>
+          <ApiProvider>
             <App />
-          </SocketProvider>
+          </ApiProvider>
         </Provider>
       </ErrorBoundary>
     </RollbalProvider>

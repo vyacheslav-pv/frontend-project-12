@@ -3,7 +3,7 @@ import { SocketContext } from '../contexts/index.jsx';
 
 const socket = io();
 
-const SocketProvider = ({ children }) => {
+const ApiProvider = ({ children }) => {
   const sendData = (...args) => new Promise((resolve, reject) => {
     socket.timeout(3000).emit(...args, (error, response) => {
       if (response?.status === 'ok') {
@@ -28,4 +28,4 @@ const SocketProvider = ({ children }) => {
   );
 };
 
-export default SocketProvider;
+export default ApiProvider;
