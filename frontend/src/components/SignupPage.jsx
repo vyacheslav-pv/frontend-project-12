@@ -75,7 +75,7 @@ const SignupPage = () => {
                 <img
                   src={signup}
                   className="rounded-circle"
-                  alt="Регистрация"
+                  alt={t('loginPage.linkFooter')}
                 />
               </div>
               <Form onSubmit={formik.handleSubmit} className="w-50">
