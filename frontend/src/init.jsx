@@ -27,9 +27,9 @@ const rollbarConfig = {
 
 const defaultChannelId = 1;
 
-filter.addDictionary('en-ru', [...filter.getDictionary('ru'), ...filter.getDictionary('en')]);
-
 const init = (socket) => {
+  filter.addDictionary('en-ru', [...filter.getDictionary('ru'), ...filter.getDictionary('en')]);
+
   const defaultLang = 'ru';
   const instance = i18next.createInstance();
   instance
