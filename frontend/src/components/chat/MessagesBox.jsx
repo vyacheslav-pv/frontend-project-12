@@ -13,14 +13,15 @@ const MessagesBox = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
   };
 
+  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
+
   useEffect(
     () => {
       scrollToBottom();
     },
-    [messages],
+    [messages, currentChannelId],
   );
 
-  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   return (
     <div id="messages-box" className="chat-messages overflow-auto px-5 ">
       {messages
