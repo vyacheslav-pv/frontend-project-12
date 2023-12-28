@@ -12,7 +12,7 @@ import { useAuth } from '../hooks/index.jsx';
 import signup from '../images/signup.jpg';
 
 const SignupPage = () => {
-   const inputRef = useRef();
+  const inputRef = useRef();
   const { t } = useTranslation();
 
   const navigate = useNavigate();
