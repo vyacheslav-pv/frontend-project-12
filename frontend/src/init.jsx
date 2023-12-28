@@ -27,12 +27,12 @@ const rollbarConfig = {
 
 const defaultChannelId = 1;
 
-const init = (socket) => {
+const init = async (socket) => {
   filter.addDictionary('en-ru', [...filter.getDictionary('ru'), ...filter.getDictionary('en')]);
 
   const defaultLang = 'ru';
   const instance = i18next.createInstance();
-  instance
+  await instance
     .use(initReactI18next)
     .init({
       lng: defaultLang,
