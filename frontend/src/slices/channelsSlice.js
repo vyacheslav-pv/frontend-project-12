@@ -4,7 +4,7 @@ import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import fetchData from './fetchDataSlice.js';
 
 const channelsAdapter = createEntityAdapter();
-const initialState = channelsAdapter.getInitialState({ currentChannelId: null });
+const initialState = channelsAdapter.getInitialState({ currentChannelId: null, loadingStatus: 'idle' });
 
 const channelsSlice = createSlice({
   name: 'channels',
@@ -21,9 +21,13 @@ const channelsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchData.pending, (state) => {
+        state.loadingStatus = 'loading';
+      })
       .addCase(fetchData.fulfilled, (state, { payload }) => {
         channelsAdapter.addMany(state, payload.channels);
         state.currentChannelId = payload.currentChannelId;
+        state.loadingStatus = 'loaded';
       });
   },
 });
