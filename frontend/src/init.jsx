@@ -3,6 +3,7 @@ import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { Provider as RollbalProvider, ErrorBoundary } from '@rollbar/react';
 import filter from 'leo-profanity';
+import { io } from 'socket.io-client';
 
 import App from './components/App.jsx';
 import store from './slices/index.js';
@@ -27,8 +28,10 @@ const rollbarConfig = {
 
 const defaultChannelId = 1;
 
-const init = async (socket) => {
+const init = async () => {
   filter.addDictionary('en-ru', [...filter.getDictionary('ru'), ...filter.getDictionary('en')]);
+
+  const socket = io();
 
   const defaultLang = 'ru';
   const instance = i18next.createInstance();
